@@ -26,7 +26,7 @@ class Blueprint
      * @param array $replacements
      * @param array $configuration
      */
-    public function __construct(string $name, File $file, array $replacements, array $configuration)
+    public function __construct(string $name, File $file, ?array $replacements = [], ?array $configuration = [])
     {
         $this->name = $name;
         $this->file = $file;
@@ -67,17 +67,17 @@ class Blueprint
     }
 
     /**
-     * @return Replacement[]
+     * @return array|null
      */
-    public function getReplacements(): array
+    public function getReplacements(): ?array
     {
         return $this->replacements;
     }
 
     /**
-     * @param Replacement[] $replacements
+     * @param array|null $replacements
      */
-    public function setReplacements(array $replacements): void
+    public function setReplacements(?array $replacements = []): void
     {
         $this->replacements = $replacements;
     }
@@ -85,7 +85,7 @@ class Blueprint
     /**
      * @return array
      */
-    public function getConfiguration(): array
+    public function getConfiguration(): ?array
     {
         return $this->configuration;
     }
@@ -93,7 +93,7 @@ class Blueprint
     /**
      * @param array $configuration
      */
-    public function setConfiguration(array $configuration): void
+    public function setConfiguration(?array $configuration = []): void
     {
         $this->configuration = $configuration;
     }
