@@ -5,6 +5,7 @@ use Exception;
 use Nette\Utils\FileSystem;
 use Nette\Neon\Neon;
 use PHPWell\PHPGenerator\Entity\Blueprint;
+use PHPWell\PHPGenerator\Entity\BlueprintTemplate;
 use PHPWell\PHPGenerator\Entity\Project;
 use PHPWell\PHPGenerator\Entity\ProjectType;
 use PHPWell\PHPGenerator\Entity\File;
@@ -228,11 +229,18 @@ class PHPGenerator
 
         foreach($blueprints as $blueprint) {
             $filePath = $this->copyBlueprint($project, $blueprint, $projectPath);
-            $args = $this->prepareArgs($blueprint->getReplacements(), $project, $blueprint, $filePath);
-            $this->renderTemplate($filePath, $args);
 
-            foreach($blueprint->getConfiguration() as $cfg) {
-                $project->addConfig($this->applyParams($cfg, $args));
+            $blueprintTemplate = new BlueprintTemplate;
+            $blueprintTemplate->project         = $project;
+            $blueprintTemplate->blueprint       = $blueprint;
+            $blueprintTemplate->projectType     = $project->getType();
+            $this->renderTemplate($filePath, $blueprintTemplate);
+
+            if(count($blueprint->getConfiguration()) > 0) {
+                $args = $this->prepareArgs($blueprint->getReplacements(), $project, $blueprint, $filePath);
+                foreach($blueprint->getConfiguration() as $cfg) {
+                    $project->addConfig($this->applyParams($cfg, $args));
+                }
             }
         }
     }
@@ -304,7 +312,7 @@ class PHPGenerator
 
         $filePath = sprintf('%s/%s', $projectPath, $filename);
         FileSystem::copy(
-            sprintf('%s%s.%s', $this->getBlueprintsPath(), $blueprint->getName(), Constant::blueprint_ext),
+            sprintf('%s%s.%s', $this->getBlueprintsPath(), $blueprint->getName(), Constant::EXT_LATTE),
             $filePath,
             true
         );
@@ -317,13 +325,35 @@ class PHPGenerator
      * @param string $file
      * @param array $params
      */
-    private function renderTemplate(string $file, array $params): void
+    private function renderTemplate(string $file, BlueprintTemplate $blueprintTemplate): void
     {
-        $fileString = file_get_contents($file);
-        $fileString = $this->applyParams($fileString, $params);
+        $latte = $this->createLatteEngine();
+        $fileString = $latte->renderToString($file, $blueprintTemplate);
         file_put_contents($file, $fileString);
         $this->p("Generating: " . $file);
     }
+
+    /**
+     * @return \Latte\Engine
+     */
+    private function createLatteEngine(): \Latte\Engine
+    {
+        $latte = new \Latte\Engine;
+
+        // filters
+        $latte->addFilter('lcfirst', function (string $string): string {
+            return lcfirst($string);
+        });
+
+        return $latte;
+    }
+
+    public function macroTemplateRender(MacroNode $node, PhpWriter $writer)
+    {
+        $args = $writer->formatArgs();
+        return $writer->write('%content', $args);
+    }
+
 
     /**
      * @param string $string
@@ -348,7 +378,7 @@ class PHPGenerator
      */
     private function getConsoleInput(): string
     {
-        $handle = fopen ("php://stdin","r");
+        $handle = fopen("php://stdin","r");
         $line = fgets($handle);
         fclose($handle);
         return trim($line);

@@ -1,0 +1,24 @@
+{templateType PHPWell\PHPGenerator\Entity\BlueprintTemplate}
+<?php declare(strict_types=1);
+{if $project->getNamespace() !== null}
+{$project->getNamespaceFormatted()}
+{/if}
+
+use Nette\Application\UI\Control;
+use Nette\Bridges\ApplicationLatte\Template;
+
+class {$project->getName()}Control extends Control
+{
+    public function render(): void
+    {
+        /** @var Template $template */
+        $template = $this->template;
+        $template->setFile(__DIR__ . '/{$project->getName()}.latte');
+        $template->render();
+    }
+
+    public function createComponent{$project->getName()}(string $name)
+    {
+        //TODO: do some work here :)
+    }
+}
