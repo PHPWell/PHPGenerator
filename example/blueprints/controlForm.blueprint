@@ -1,0 +1,58 @@
+<?php declare (strict_types = 1);
+%%%namespace%%%
+
+use Kdyby\Translation\Translator;
+use Nette\Application\UI\Control;
+use Nette\Application\UI\Form;
+use Nette\Utils\ArrayHash;
+use Nette\Bridges\ApplicationLatte\Template;
+
+class %%%project%%%Control extends Control
+{
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    public function __construct(
+        Translator $translator
+    ) {
+        parent::__construct(); // Nette <= 2.4 only!
+        $this->translator = $translator;
+    }
+
+    public function render(): void
+    {
+        /** @var Template $template */
+        $template = $this->template;
+        $template->setFile(__DIR__ . '/%%%project%%%.latte');
+        $template->render();
+    }
+
+    public function createComponent%%%project%%%(string $name): Form
+    {
+        $form = new Form;
+
+        //TODO: do some work here :)
+
+        $form->onSuccess[] = [$this, 'processForm'];
+        $form->onValidate[] = [$this, 'validateForm'];
+        $form->onError[] = [$this, 'errorForm'];
+        return $form;
+    }
+
+    public function processForm(Form $form, ArrayHash $values): void
+    {
+        //TODO: do some work here :)
+    }
+
+    public function validateForm(Form $form, ArrayHash $values): void
+    {
+        //TODO: do some work here :)
+    }
+
+    public function errorForm(Form $form, ArrayHash $values): void
+    {
+        //TODO: do some work here :)
+    }
+}

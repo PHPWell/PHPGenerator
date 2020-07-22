@@ -1,0 +1,96 @@
+types:
+	component:
+		detail: Basic Nette Component
+		blueprints:
+			- interfaceTrait
+			- componentTrait
+			- control
+			- interface
+			- template
+
+	datagrid:
+		detail: Datagrid Component
+		blueprints:
+			- interfaceTrait
+			- componentTrait
+			- controlDatagrid
+			- interface
+			- template
+
+	form:
+		detail: Basic Nette Form Factory
+		blueprints:
+			- interfaceTrait
+			- componentTrait
+			- controlForm
+			- interface
+			- template
+
+blueprints:
+	interfaceTrait:
+		prefix: null
+		suffix: InterfaceTrait
+		ext: php
+		replacements:
+			- project
+			- namespace
+		cfg: []
+
+	componentTrait:
+		prefix: null
+		suffix: Trait
+		ext: php
+		replacements:
+			- project
+			- namespace
+		cfg: []
+
+	control:
+		prefix: null
+		suffix: Control
+		ext: php
+		replacements:
+			- project
+			- namespace
+		cfg: []
+
+	controlDatagrid:
+		prefix: null
+		suffix: Control
+		ext: php
+		replacements:
+			- project
+			- namespace
+
+		cfg: []
+
+	controlForm:
+		prefix: null
+		suffix: Control
+		ext: php
+		replacements:
+			- project
+			- namespace
+		cfg: []
+
+	interface:
+		prefix: I
+		suffix: Factory
+		ext: php
+		replacements:
+			- project
+			- namespace
+			- namespace_only
+			- class
+
+		cfg:
+			- "- implement: %%%namespace_only%%%\\%%%class%%%"
+			- "  inject: true"
+
+	template:
+		prefix: null
+		suffix: null
+		ext: latte
+		replacements:
+			- loweredProjectName
+		cfg: []

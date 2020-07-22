@@ -1,0 +1,13 @@
+<?php declare (strict_types = 1);
+%%%namespace%%%
+
+trait %%%project%%%InterfaceTrait
+{
+	//protected I%%%project%%%Factory $i%%%project%%%Factory; // PHP7.4 ready
+	protected $i%%%project%%%Factory; // PHP7.3 ready
+
+	public function inject%%%project%%%Interface(I%%%project%%%Factory $i%%%project%%%Factory): void
+	{
+		$this->i%%%project%%%Factory = $i%%%project%%%Factory;
+	}
+}

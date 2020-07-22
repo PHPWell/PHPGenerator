@@ -1,0 +1,49 @@
+<?php declare (strict_types = 1);
+%%%namespace%%%
+
+use Nette\Application\UI\Control;
+use App\Customization\Datagrid\DataGrid;
+use Kdyby\Translation\Translator;
+use Nette\Bridges\ApplicationLatte\Template;
+
+class %%%project%%%Control extends Control
+{
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    public function __construct(
+        Translator $translator
+    ) {
+        parent::__construct(); // Nette <= 2.4 only!
+        $this->translator = $translator;
+    }
+
+    public function render(): void
+    {
+        /** @var Template $template */
+        $template = $this->template;
+        $template->setFile(__DIR__ . '/%%%project%%%.latte');
+        $template->render();
+    }
+
+    public function createComponent%%%project%%%(string $name): DataGrid
+    {
+        /* Datagrid Customization */
+        $grid = new DataGrid($this->translator);
+        /* Configuration */
+        $this->addComponent($grid, $name);
+        $grid->setColumnsHideable();
+        $grid->setPrimaryKey('ID');
+        $grid->setAutoSubmit();
+        /* Datasource */
+        $grid->setDataSource([]);
+        /* Columns */
+        //TODO: do some work here :)
+        /* Filters */
+
+        /* Return */
+        return $grid;
+    }
+}// class

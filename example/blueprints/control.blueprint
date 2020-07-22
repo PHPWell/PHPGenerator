@@ -1,0 +1,21 @@
+<?php declare (strict_types = 1);
+%%%namespace%%%
+
+use Nette\Application\UI\Control;
+use Nette\Bridges\ApplicationLatte\Template;
+
+class %%%project%%%Control extends Control
+{
+    public function render(): void
+    {
+        /** @var Template $template */
+        $template = $this->template;
+        $template->setFile(__DIR__ . '/%%%project%%%.latte');
+        $template->render();
+    }
+
+    public function createComponent%%%project%%%(string $name)
+    {
+        //TODO: do some work here :)
+    }
+}

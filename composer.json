@@ -1,0 +1,9 @@
+{
+    "name": "phpwell/phpgenerator",
+    "description": "PHPGenerator for nette components",
+    "require": {
+        "php": "^7.2.0",
+        "nette/utils": "^2.4",
+        "nette/neon": "^2.4"
+    }
+}
