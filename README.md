@@ -1,7 +1,7 @@
 # Co je PHPGenerator?
 Jednoduchá utilita na generování kostry kódu. Už nikdy žádné kopírování existujících funkcionalit a nekončené přepisování názvů a proměnných!
 
-# Podporované blueprinty
+# Podporované blueprinty (v examples)
 - ``component`` - Základní komponenta
 - ``form`` - Nette Formulář
 - ``datagrid`` - Přednastavený datagrid
