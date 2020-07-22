@@ -1,3 +1,5 @@
+``composer require phpwell/phpgenerator``
+
 # Co je PHPGenerator?
 Jednoduchá utilita na generování kostry kódu. Už nikdy žádné kopírování existujících funkcionalit a nekončené přepisování názvů a proměnných!
 
