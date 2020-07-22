@@ -1,0 +1,31 @@
+{templateType PHPWell\PHPGenerator\Entity\BlueprintTemplate}
+<?php declare(strict_types=1);
+{if $project->getNamespace() !== null}
+{$project->getNamespaceFormatted()}
+{/if}
+
+trait {$project->getName()}Trait
+{
+	//protected I{$project->getName()}Factory $i{$project->getName()}Factory; // PHP7.4 ready
+	protected $i{$project->getName()}Factory; // PHP7.3 ready
+
+	public function inject{$project->getName()}Interface(I{$project->getName()}Factory $i{$project->getName()}Factory): void
+	{
+		$this->i{$project->getName()}Factory = $i{$project->getName()}Factory;
+	}
+
+    public function createComponent{$project->getName()}(): {$project->getName()}Control
+    {
+        return $this->i{$project->getName()}Factory->create();
+    }
+
+    protected function attachComponent{$project->getName()}({$project->getName()}Control $component): void
+    {
+        $this->addComponent($component, '{$project->getName()}');
+    }
+
+    public function get{$project->getName()}Control(): {$project->getName()}Control
+    {
+        return $this['{$project->getName()}'];
+    }
+}

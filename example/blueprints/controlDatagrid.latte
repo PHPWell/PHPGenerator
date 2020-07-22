@@ -1,12 +1,14 @@
-<?php declare (strict_types = 1);
-%%%namespace%%%
-
+{templateType PHPWell\PHPGenerator\Entity\BlueprintTemplate}
+<?php declare(strict_types=1);
+{if $project->getNamespace() !== null}
+{$project->getNamespaceFormatted()}
+{/if}
 use Nette\Application\UI\Control;
 use App\Customization\Datagrid\DataGrid;
 use Kdyby\Translation\Translator;
 use Nette\Bridges\ApplicationLatte\Template;
 
-class %%%project%%%Control extends Control
+class {$project->getName()}Control extends Control
 {
     /**
      * @var Translator
@@ -24,11 +26,11 @@ class %%%project%%%Control extends Control
     {
         /** @var Template $template */
         $template = $this->template;
-        $template->setFile(__DIR__ . '/%%%project%%%.latte');
+        $template->setFile(__DIR__ . '/{$project->getName()}.latte');
         $template->render();
     }
 
-    public function createComponent%%%project%%%(string $name): DataGrid
+    public function createComponent{$project->getName()}(string $name): DataGrid
     {
         /* Datagrid Customization */
         $grid = new DataGrid($this->translator);
