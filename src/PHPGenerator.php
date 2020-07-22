@@ -90,11 +90,11 @@ class PHPGenerator
                     $blueprintName
                     , new File(
                         $blueprint['ext']
-                        , $blueprint['prefix']
-                        , $blueprint['suffix']
+                        , $blueprint['prefix']           ??  null
+                        , $blueprint['suffix']           ??  null
                     )
-                    , $blueprint['replacements']
-                    , $blueprint['cfg']
+                    , $blueprint['replacements']    ??  []
+                    , $blueprint['cfg']             ??  []
                 )
             );
         }
