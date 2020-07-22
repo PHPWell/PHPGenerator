@@ -1,0 +1,10 @@
+{templateType PHPWell\PHPGenerator\Entity\BlueprintTemplate}
+<?php declare(strict_types=1);
+{if $project->getNamespace() !== null}
+{$project->getNamespaceFormatted()}
+{/if}
+
+interface I{$project->getName()}Factory
+{
+    public function create(): {$project->getName()}Control;
+}

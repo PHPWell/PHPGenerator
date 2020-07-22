@@ -8,8 +8,7 @@ namespace PHPWell\PHPGenerator;
 class Constant
 {
     public const
-        php_ext = 'php',
-        latte_ext = 'latte',
-        blueprint_ext = 'blueprint'
+        EXT_PHP     = 'php',
+        EXT_LATTE   = 'latte'
     ;
 }

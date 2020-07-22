@@ -26,6 +26,22 @@ types:
 			- interface
 			- template
 
+	traits:
+		detail: Traits combo for components
+		blueprints:
+			- interfaceTrait
+			- componentTrait
+
+	itrait:
+		detail: Interface Trait for components
+		blueprints:
+			- interfaceTrait
+
+	ctrait:
+		detail: Component Trait for components
+		blueprints:
+			- componentTrait
+
 blueprints:
 	interfaceTrait:
 		prefix: null
@@ -61,7 +77,6 @@ blueprints:
 		replacements:
 			- project
 			- namespace
-
 		cfg: []
 
 	controlForm:
@@ -82,7 +97,6 @@ blueprints:
 			- namespace
 			- namespace_only
 			- class
-
 		cfg:
 			- "- implement: %%%namespace_only%%%\\%%%class%%%"
 			- "  inject: true"

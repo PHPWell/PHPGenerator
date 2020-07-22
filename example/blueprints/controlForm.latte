@@ -1,5 +1,8 @@
-<?php declare (strict_types = 1);
-%%%namespace%%%
+{templateType PHPWell\PHPGenerator\Entity\BlueprintTemplate}
+<?php declare(strict_types=1);
+{if $project->getNamespace() !== null}
+{$project->getNamespaceFormatted()}
+{/if}
 
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
@@ -7,7 +10,7 @@ use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
 use Nette\Bridges\ApplicationLatte\Template;
 
-class %%%project%%%Control extends Control
+class {$project->getName()}Control extends Control
 {
     /**
      * @var Translator
@@ -25,11 +28,11 @@ class %%%project%%%Control extends Control
     {
         /** @var Template $template */
         $template = $this->template;
-        $template->setFile(__DIR__ . '/%%%project%%%.latte');
+        $template->setFile(__DIR__ . '/{$project->getName()}.latte');
         $template->render();
     }
 
-    public function createComponent%%%project%%%(string $name): Form
+    public function createComponent{$project->getName()}(string $name): Form
     {
         $form = new Form;
 
