@@ -1,9 +1,33 @@
 {
     "name": "phpwell/phpgenerator",
+    "type": "library",
     "description": "PHPGenerator for nette components",
+    "keywords": ["phpgenerator", "nette", "phpwell"],
+    "license": ["MIT"],
+    "authors": [
+        {
+            "name": "Dominik Procházka",
+            "homepage": "https://domm.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PHPWell\\PHPGenerator\\": "src/"
+        }
+    },
     "require": {
         "php": "^7.2.0",
         "nette/utils": "^2.4",
         "nette/neon": "^2.4"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "master"
+        }
     }
 }
