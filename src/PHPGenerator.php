@@ -4,6 +4,11 @@ namespace PHPWell\PHPGenerator;
 use Exception;
 use Nette\Utils\FileSystem;
 use Nette\Neon\Neon;
+use PHPWell\PHPGenerator\Entity\Blueprint;
+use PHPWell\PHPGenerator\Entity\Project;
+use PHPWell\PHPGenerator\Entity\ProjectType;
+use PHPWell\PHPGenerator\Entity\File;
+
 /**
  * Class PHPGenerator
  * @package PHPWell\PHPGenerator
