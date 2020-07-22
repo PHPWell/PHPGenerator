@@ -93,7 +93,7 @@ class Project
      */
     public function getConfig(): array
     {
-        return $this->config;
+        return $this->config ?? [];
     }
 
     /**
