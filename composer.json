@@ -17,8 +17,8 @@
     },
     "require": {
         "php": "^7.2.0",
-        "nette/utils": "^2.4",
-        "nette/neon": "^2.4"
+        "nette/utils": "^3.0",
+        "nette/neon": "^3.2"
     },
     "prefer-stable": true,
     "minimum-stability": "dev",
